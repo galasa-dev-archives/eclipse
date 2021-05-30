@@ -20,6 +20,63 @@
 	</properties>
 
 	<dependencies>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.eclipse.feature</artifactId>
+            <version>0.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.eclipse.feature</artifactId>
+            <version>0.15.0</version>
+            <type>xml</type>
+            <classifier>p2metadata</classifier>
+        </dependency>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.eclipse.feature</artifactId>
+            <version>0.15.0</version>
+            <type>xml</type>
+            <classifier>p2artifacts</classifier>
+        </dependency>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.simbank.feature</artifactId>
+            <version>0.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.simbank.feature</artifactId>
+            <version>0.15.0</version>
+            <type>xml</type>
+            <classifier>p2metadata</classifier>
+        </dependency>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.simbank.feature</artifactId>
+            <version>0.15.0</version>
+            <type>xml</type>
+            <classifier>p2artifacts</classifier>
+        </dependency>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.zos.feature</artifactId>
+            <version>0.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.zos.feature</artifactId>
+            <version>0.15.0</version>
+            <type>xml</type>
+            <classifier>p2metadata</classifier>
+        </dependency>
+        <dependency>
+            <groupId>dev.galasa</groupId>
+            <artifactId>dev.galasa.zos.feature</artifactId>
+            <version>0.15.0</version>
+            <type>xml</type>
+            <classifier>p2artifacts</classifier>
+        </dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
