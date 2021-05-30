@@ -19,35 +19,35 @@
 	</scm>
 
 	<modules>
-        <module>dev.galasa.eclipse</module>
+		<module>dev.galasa.eclipse</module>
 		<module>dev.galasa.eclipse.feature</module>
-        <module>dev.galasa.zos3270.ui</module>
-        <module>dev.galasa.zos.feature</module>
-        <module>dev.galasa.simbank.ui</module>
-        <module>dev.galasa.simbank.feature</module>
-        <module>dev.galasa.eclipse.site</module>
+		<module>dev.galasa.zos3270.ui</module>
+		<module>dev.galasa.zos.feature</module>
+		<module>dev.galasa.simbank.ui</module>
+		<module>dev.galasa.simbank.feature</module>
+		<module>dev.galasa.eclipse.site</module>
 	</modules>
 
 	<repositories>
-        <repository>
-            <id>galasa.runtime.repo</id>
-            <url>${galasa.runtime.repo}</url>
-        </repository>
-        <repository>
-            <id>galasa.simplatform.repo</id>
-            <url>${galasa.simplatform.repo}</url>
-        </repository>
+		<repository>
+			<id>galasa.runtime.repo</id>
+			<url>${galasa.runtime.repo}</url>
+		</repository>
+		<repository>
+			<id>galasa.simplatform.repo</id>
+			<url>${galasa.simplatform.repo}</url>
+		</repository>
 		<repository>
 			<id>central</id>
 			<url>${galasa.central.repo}</url>
 		</repository>
-        <repository>
-            <id>Photon</id>
-            <layout>p2</layout>
-            <url>${galasa.eclipse.repo}</url>
-        </repository>
+		<repository>
+			<id>Photon</id>
+			<layout>p2</layout>
+			<url>${galasa.eclipse.repo}</url>
+		</repository>
 	</repositories>
-	
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>galasa.runtime.repo</id>
@@ -58,6 +58,17 @@
 			<url>${galasa.central.repo}</url>
 		</pluginRepository>
 	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>galasa.release.repo</id>
+			<url>${galasa.release.repo}</url>
+		</repository>
+		<snapshotRepository>
+			<id>galasa.snapshot.repo</id>
+			<url>${galasa.snapshot.repo}</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 		<tycho-version>1.4.0</tycho-version>
