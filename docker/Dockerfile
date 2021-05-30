@@ -1,10 +1,12 @@
+ARG baseVersion
 ARG dockerRepository
-ARG branch
-FROM ${dockerRepository}/library/httpd:2.4
+FROM ${dockerRepository}/galasadev/galasa-maven-base:${baseVersion}
 
-RUN rm -v /usr/local/apache2/htdocs/*
-COPY httpd.conf /usr/local/apache2/conf/httpd.conf
+ARG branch
+ARG gitHash
 
 RUN sed -i "s/--branchname--/${branch}/"    /usr/local/apache2/conf/httpd.conf
+RUN sed -i 's/--repositoryname--/eclipse/'  /usr/local/apache2/conf/httpd.conf
 
 COPY repo/ /usr/local/apache2/htdocs/
+#RUN echo -n ${gitHash} > /usr/local/apache2/htdocs/gradle.githash
