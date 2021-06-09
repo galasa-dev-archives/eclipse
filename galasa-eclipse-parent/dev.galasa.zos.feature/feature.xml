@@ -299,7 +299,7 @@ version(s), and exceptions or additional permissions here}.&quot;
 
    <plugin
          id="dev.galasa.zos3270.common"
-         version="0.16.0.qualifier"
+         version="0.15.0.qualifier"
          download-size="0"
          install-size="0"
          unpack="false"/>
