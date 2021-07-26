@@ -5,7 +5,7 @@
 
 	<groupId>dev.galasa</groupId>
 	<artifactId>galasa-eclipse-parent</artifactId>
-	<version>0.16.0</version>
+	<version>0.17.0</version>
 	<packaging>pom</packaging>
 
 	<name>Galasa Eclipse Parent</name>
@@ -101,16 +101,6 @@
 				<groupId>org.sonatype.plexus</groupId>
 				<artifactId>plexus-build-api</artifactId>
 				<version>0.0.7</version>
-			</dependency>
-			<dependency>
-				<groupId>dev.galasa</groupId>
-				<artifactId>dev.galasa</artifactId>
-				<version>0.15.0</version>
-			</dependency>
-			<dependency>
-				<groupId>dev.galasa</groupId>
-				<artifactId>dev.galasa.framework</artifactId>
-				<version>0.16.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
