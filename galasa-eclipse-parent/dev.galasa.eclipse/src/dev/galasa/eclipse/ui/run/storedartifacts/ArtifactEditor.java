@@ -1,13 +1,16 @@
 /*
  * Licensed Materials - Property of IBM
  * 
- * (c) Copyright IBM Corp. 2019.
+ * (c) Copyright IBM Corp. 2019-2021.
  */
 package dev.galasa.eclipse.ui.run.storedartifacts;
+
+import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.IFindReplaceTarget;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -17,8 +20,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.EditorPart;
+import org.eclipse.ui.texteditor.FindReplaceAction;
+import org.eclipse.ui.texteditor.IAbstractTextEditorHelpContextIds;
 
 import dev.galasa.framework.spi.IRunResult;
 import dev.galasa.framework.spi.ResultArchiveStoreException;
@@ -74,6 +81,8 @@ public class ArtifactEditor extends EditorPart {
         gd.widthHint = 0;
 
         lvComposite.setLayoutData(gd);
+        
+        activateActions();
 
         textViewer.setEditable(false);
         doc = new Document();
@@ -82,6 +91,18 @@ public class ArtifactEditor extends EditorPart {
 
         textViewer.getTextWidget().setFont(JFaceResources.getFont(JFaceResources.TEXT_FONT));
     }
+    
+    
+    public void activateActions() { 
+
+        ResourceBundle x = ResourceBundle.getBundle("org.eclipse.ui.texteditor.ConstructedEditorMessages");
+        FindReplaceAction fAction = new FindReplaceAction(x, "Editor.FindReplace.", this); //$NON-NLS-1$
+        fAction.setHelpContextId(IAbstractTextEditorHelpContextIds.FIND_ACTION);
+        fAction.setActionDefinitionId(IWorkbenchCommandConstants.EDIT_FIND_AND_REPLACE);
+        getEditorSite().getActionBars().setGlobalActionHandler(ActionFactory.FIND.getId(), fAction);
+        fAction.setEnabled(true);
+    }
+
 
     @Override
     public void doSave(IProgressMonitor arg0) {
@@ -136,6 +157,17 @@ public class ArtifactEditor extends EditorPart {
         // *** Now running on the UI thread
 
         this.doc.set(text);
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Override
+    public <T> T getAdapter(Class<T> adapter) {
+        if (IFindReplaceTarget.class.equals(adapter)) {
+            if (textViewer != null) {
+                return (T) textViewer.getFindReplaceTarget();
+            }
+        }
+    	return super.getAdapter(adapter);
     }
 
 }
