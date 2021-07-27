@@ -1,7 +1,7 @@
 /*
  * Licensed Materials - Property of IBM
  * 
- * (c) Copyright IBM Corp. 2019.
+ * (c) Copyright IBM Corp. 2019-2021.
  */
 package dev.galasa.eclipse.ui.wizards.submittests;
 
@@ -15,6 +15,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -23,7 +24,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -47,8 +47,8 @@ public class SelectTestsWizardPage extends WizardPage
     private TreeViewer                               treeViewer;
 
     private Combo                                    comboStream;
-    private Button                                   saveButton;
-    private Button                                   loadButton;
+//    private Button                                   saveButton;
+//    private Button                                   loadButton;
     private Text                                     searchText;
 
     private Composite                                testClassFrame;
@@ -117,7 +117,7 @@ public class SelectTestsWizardPage extends WizardPage
 
         treeViewer.setContentProvider(new TestTreeContentProvider());
         treeViewer.setLabelProvider(new TestTreeLabelProvider());
-//		treeViewer.setSorter(new ViewerSorter());
+		treeViewer.setComparator(new ViewerComparator());
 
         ArrayList<String> loading = new ArrayList<String>(1);
         loading.add("Select test stream....");
