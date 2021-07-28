@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.4"?>
 <plugin>
    <extension-point id="dev.galasa.eclipse.extension.storedartifacts.filter" name="Filter Stored Artifacts" schema="schema/dev.galasa.eclipse.extension.storedartifacts.filter.exsd"/>
    <extension-point id="dev.galasa.eclipse.extension.launcher.overrides" name="Launcher Overrides" schema="schema/dev.galasa.eclipse.extension.launcher.overrides.exsd"/>
@@ -130,7 +129,29 @@
 				</command>
       	</menuContribution>
    	</extension>
-   	   <extension
+   	
+   	
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="dev.galasa.eclipse.ui.runs.contribution.Run"
+            objectClass="dev.galasa.eclipse.ui.runs.Run">
+         <action
+               id="dev.galasa.eclipse.ui.runs.contribution.DeleteRunAction"
+               class="dev.galasa.eclipse.ui.runs.DeleteRunAction"
+               label="Delete run">
+         </action>
+         <action
+               id="dev.galasa.eclipse.ui.runs.contribution.ResetRunAction"
+               class="dev.galasa.eclipse.ui.runs.ResetRunAction"
+               label="Reset run">
+         </action>
+      </objectContribution>
+    </extension>   	
+   	
+   	
+   	<extension
          point="org.eclipse.debug.core.launchConfigurationTypes">
       <launchConfigurationType
             delegate="dev.galasa.eclipse.launcher.Launcher"
