@@ -12,14 +12,22 @@ spec:
   params:
   - name: distBranch
     value: main
+  - name: refspec
+    value: +refs/heads/main:refs/heads/main
   pipelineRef:
     name: eclipse-repo-build
   serviceAccountName: build-bot
-  resources:
-  - name: git-eclipse
-    resourceRef:
-      name: git-eclipse-main
   podTemplate:
     nodeSelector:
       beta.kubernetes.io/arch: amd64
       platform: hdc
+  workspaces:
+  - name: git-workspace
+    volumeClaimTemplate:
+      spec:
+        storageClassName: rbd
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi

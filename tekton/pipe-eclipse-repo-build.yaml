@@ -9,19 +9,40 @@ metadata:
   name: eclipse-repo-build
   namespace: galasa-tekton
 spec:
-  resources:
-  - name: git-eclipse
-    type: git
+  workspaces:
+  - name: git-workspace
+    optional: false
   params:
   - name: distBranch
+    type: string
+  - name: refspec
     type: string
   - name: noPush
     type: string
     default: ""
   tasks:
+  - name: clone-eclipse
+    taskRef: 
+      name: git-clone
+    params:
+    - name: url
+      value: https://github.com/galasa-dev/eclipse
+    - name: revision
+      value: $(params.distBranch)
+    - name: refspec
+      value: $(params.refspec)
+    - name: depth
+      value: "9999999"
+    - name: subdirectory
+      value: eclipse
+    workspaces:
+     - name: output
+       workspace: git-workspace
   - name: eclipse-build
     taskRef:
       name: eclipse-repo-build
+    runAfter:
+    - clone-eclipse
     params:
     - name: distBranch
       value: $(params.distBranch)
@@ -35,10 +56,9 @@ spec:
       value: https://cicscit.hursley.ibm.com/galasadev/$(params.distBranch)/maven/obr/
     - name: noPush
       value: $(params.noPush)
-    resources:
-      inputs:
-      - name: git-eclipse
-        resource: git-eclipse
+    workspaces:
+     - name: git-workspace
+       workspace: git-workspace
   - name: recycle-eclipse-maven
     taskRef:
       name: recycle-deployment
