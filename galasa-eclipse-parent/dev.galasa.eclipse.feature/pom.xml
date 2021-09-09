@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>dev.galasa</groupId>
 			<artifactId>dev.galasa.framework</artifactId>
-			<version>0.17.0</version>
+			<version>0.18.0</version>
 		</dependency>
 		<dependency>
 			<groupId>dev.galasa</groupId>
