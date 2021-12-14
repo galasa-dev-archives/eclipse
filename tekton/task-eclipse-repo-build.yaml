@@ -31,14 +31,14 @@ spec:
     default: http://download.eclipse.org/releases/photon
   - name: dockerRepo
     type: string
-    default: nexus.cics-ts.hur.hdclab.intranet.ibm.com:8080
+    default: harbor-cicsk8s.hursley.ibm.com
   - name: noPush
     type: string
     default: ""
   steps:
   - name: maven-build-eclipse
     workingDir: /workspace/git/eclipse/galasa-eclipse-parent
-    image: $(params.dockerRepo)/galasa/galasa-build
+    image: $(params.dockerRepo)/galasadev/galasa-build
     command:
     - mvn
     - -Dgpg.skip=true
@@ -53,7 +53,7 @@ spec:
     - deploy
   - name: docker-build-eclipse-repo
     workingDir: /workspace/git/eclipse/docker
-    image: $(params.dockerRepo)/library/kaniko-executor:latest
+    image: $(params.dockerRepo)/common/kaniko-project/executor:latest
     env:
     - name: DOCKER_CONFIG
       value: /tekton/home/.docker
@@ -74,7 +74,7 @@ spec:
     - --build-arg=gitHash=$(resources.inputs.git/eclipse.commit)
   - name: docker-build-eclipse-p2
     workingDir: /workspace/git/eclipse/galasa-eclipse-parent/dev.galasa.eclipse.site
-    image: $(params.dockerRepo)/library/kaniko-executor:latest
+    image: $(params.dockerRepo)/common/kaniko-project/executor:latest
     env:
     - name: DOCKER_CONFIG
       value: /tekton/home/.docker
@@ -89,7 +89,7 @@ spec:
     - --skip-tls-verify-pull
     - --single-snapshot
     - --verbosity=info
-    - --build-arg=dockerRepository=$(params.dockerRepo)
+    - --build-arg=dockerRepository=$(params.dockerRepo)/dockerhub
     - --build-arg=branch=$(params.distBranch)
     - --build-arg=gitHash=$(resources.inputs.git.eclipse.commit)
     - --build-arg=baseVersion=$(params.mavenBaseVersion)
