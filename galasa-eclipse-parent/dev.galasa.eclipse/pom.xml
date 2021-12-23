@@ -6,11 +6,11 @@
 	<parent>
 		<groupId>dev.galasa</groupId>
 		<artifactId>galasa-eclipse-parent</artifactId>
-		<version>0.19.0</version>
+		<version>0.19.1</version>
 	</parent>
 
 	<artifactId>dev.galasa.eclipse</artifactId>
-	<version>0.19.0</version>
+	<version>0.19.1</version>
 	<!-- If updating version, update in MANIFEST.MF, also dev.galasa.eclipse.feature/pom.xml 
 		and feature.xml -->
 	<packaging>eclipse-plugin</packaging>
@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>dev.galasa</groupId>
 			<artifactId>dev.galasa.framework</artifactId>
-			<version>0.19.0</version>
+			<version>0.19.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -81,7 +81,7 @@
 								<item>
 									<groupId>dev.galasa</groupId>
 									<artifactId>galasa-boot</artifactId>
-									<version>0.19.0</version>
+									<version>0.19.1</version>
 								</item>
 							</artifactItems>
 							<outputDirectory>lib</outputDirectory>
