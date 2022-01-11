@@ -74,11 +74,11 @@ public class SelectTestsWizardPage extends WizardPage
 
     @Override
     public void createControl(Composite parent) {
-        Composite master = new Composite(parent, SWT.NONE);
-        master.setLayout(new GridLayout(2, false));
-        master.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        Composite main = new Composite(parent, SWT.NONE);
+        main.setLayout(new GridLayout(2, false));
+        main.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        Composite composite = new Composite(master, SWT.NONE);
+        Composite composite = new Composite(main, SWT.NONE);
         composite.setLayout(new GridLayout(2, false));
         composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -113,7 +113,7 @@ public class SelectTestsWizardPage extends WizardPage
         treeViewer = new TreeViewer(composite);
         treeViewer.getControl().setLayoutData(gridData);
 
-        setControl(master);
+        setControl(main);
 
         treeViewer.setContentProvider(new TestTreeContentProvider());
         treeViewer.setLabelProvider(new TestTreeLabelProvider());
@@ -136,7 +136,7 @@ public class SelectTestsWizardPage extends WizardPage
 //		
 
         toolkit = new FormToolkit(parent.getDisplay());
-        testClassFrame = new Composite(master, SWT.NONE);
+        testClassFrame = new Composite(main, SWT.NONE);
         GridLayout gl = new GridLayout();
         gl.marginWidth = 0;
         gl.marginHeight = 0;

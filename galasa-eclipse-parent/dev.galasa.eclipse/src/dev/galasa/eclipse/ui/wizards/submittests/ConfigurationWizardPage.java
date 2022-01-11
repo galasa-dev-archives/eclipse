@@ -46,14 +46,14 @@ public class ConfigurationWizardPage extends WizardPage implements SelectionList
 
     @Override
     public void createControl(Composite parent) {
-        Composite master = new Composite(parent, SWT.NONE);
-        master.setLayout(new GridLayout(1, false));
-        master.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        Composite main = new Composite(parent, SWT.NONE);
+        main.setLayout(new GridLayout(1, false));
+        main.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        createOverridesControler(master); // TODO create composite class with ConfigurationTab
-        createDiagnosticControler(master);
+        createOverridesControler(main); // TODO create composite class with ConfigurationTab
+        createDiagnosticControler(main);
 
-        setControl(master);
+        setControl(main);
     }
 
     private void createOverridesControler(Composite parent) {
