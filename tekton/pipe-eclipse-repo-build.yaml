@@ -47,7 +47,7 @@ spec:
     - name: eclipseRepo
       value: https://nexus.cics-ts.hur.hdclab.intranet.ibm.com/repository/photon/
     - name: simplatformSourceRepo
-      value: https://galasadev-cicsk8s.hursley.ibm.com/$(params.distBranch)/maven/simplatform/
+      value: https://galasadev-cicsk8s.hursley.ibm.com/main/maven/simplatform/
     - name: mavenCentralRepo
       value: https://nexus.cics-ts.hur.hdclab.intranet.ibm.com/repository/proxy/
     - name: runtimeSourceRepo
@@ -68,7 +68,7 @@ spec:
       values: ["--no-push"]
     params:
     - name: namespace
-      value: galasa-development
+      value: galasa-branch-$(params.distBranch)
     - name: deployment
       value: maven-$(params.distBranch)-eclipse
   - name: recycle-eclipse-p2
@@ -82,6 +82,6 @@ spec:
       values: ["--no-push"]
     params:
     - name: namespace
-      value: galasa-development
+      value: galasa-branch-$(params.distBranch)
     - name: deployment
       value: p2-$(params.distBranch)
