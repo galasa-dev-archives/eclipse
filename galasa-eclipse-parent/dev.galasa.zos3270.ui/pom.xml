@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>dev.galasa</groupId>
 			<artifactId>dev.galasa</artifactId>
-			<version>0.17.0</version>
+			<version>0.21.0</version>
 		</dependency>
 		<dependency>
 			<groupId>dev.galasa</groupId>
