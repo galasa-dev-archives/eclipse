@@ -325,7 +325,7 @@ version(s), and exceptions or additional permissions here}.&quot;
          id="dev.galasa"
          download-size="0"
          install-size="0"
-         version="0.17.0.qualifier"/>
+         version="0.21.0.qualifier"/>
 
    <plugin
          id="dev.galasa.framework"
