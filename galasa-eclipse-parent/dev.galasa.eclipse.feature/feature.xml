@@ -337,13 +337,13 @@ version(s), and exceptions or additional permissions here}.&quot;
          id="dev.galasa.cps.etcd"
          download-size="0"
          install-size="0"
-         version="0.19.0.qualifier"/>
+         version="0.21.0.qualifier"/>
 
    <plugin
          id="dev.galasa.ras.couchdb"
          download-size="0"
          install-size="0"
-         version="0.15.0.qualifier"/>
+         version="0.21.0.qualifier"/>
 
    <plugin
          id="org.apache.commons.logging"
