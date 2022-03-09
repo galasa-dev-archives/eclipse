@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>dev.galasa.eclipse</artifactId>
-	<version>0.21.0</version>
+	<version>0.22.0</version>
 	<!-- If updating version, update in MANIFEST.MF, also dev.galasa.eclipse.feature/pom.xml 
 		and feature.xml -->
 	<packaging>eclipse-plugin</packaging>

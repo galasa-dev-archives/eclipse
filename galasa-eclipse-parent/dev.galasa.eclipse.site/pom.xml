@@ -48,38 +48,38 @@
         <dependency>
             <groupId>dev.galasa</groupId>
             <artifactId>dev.galasa.simbank.feature</artifactId>
-            <version>0.21.0</version>
+            <version>0.22.0</version>
         </dependency>
         <dependency>
             <groupId>dev.galasa</groupId>
             <artifactId>dev.galasa.simbank.feature</artifactId>
-            <version>0.21.0</version>
+            <version>0.22.0</version>
             <type>xml</type>
             <classifier>p2metadata</classifier>
         </dependency>
         <dependency>
             <groupId>dev.galasa</groupId>
             <artifactId>dev.galasa.simbank.feature</artifactId>
-            <version>0.21.0</version>
+            <version>0.22.0</version>
             <type>xml</type>
             <classifier>p2artifacts</classifier>
         </dependency>
         <dependency>
             <groupId>dev.galasa</groupId>
             <artifactId>dev.galasa.zos.feature</artifactId>
-            <version>0.21.0</version>
+            <version>0.22.0</version>
         </dependency>
         <dependency>
             <groupId>dev.galasa</groupId>
             <artifactId>dev.galasa.zos.feature</artifactId>
-            <version>0.21.0</version>
+            <version>0.22.0</version>
             <type>xml</type>
             <classifier>p2metadata</classifier>
         </dependency>
         <dependency>
             <groupId>dev.galasa</groupId>
             <artifactId>dev.galasa.zos.feature</artifactId>
-            <version>0.21.0</version>
+            <version>0.22.0</version>
             <type>xml</type>
             <classifier>p2artifacts</classifier>
         </dependency>
