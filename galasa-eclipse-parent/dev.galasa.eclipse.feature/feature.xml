@@ -319,7 +319,7 @@ version(s), and exceptions or additional permissions here}.&quot;
          id="dev.galasa.eclipse"
          download-size="0"
          install-size="0"
-         version="0.22.0.qualifier"/>
+         version="0.23.0.qualifier"/>
 
    <plugin
          id="dev.galasa"
