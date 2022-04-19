@@ -2,7 +2,7 @@
 <feature
       id="dev.galasa.eclipse.feature"
       label="Galasa Core"
-      version="0.22.0.qualifier"
+      version="0.23.0.qualifier"
       provider-name="IBM">
 
    <copyright>
