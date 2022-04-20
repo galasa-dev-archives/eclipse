@@ -22,11 +22,6 @@
 		</dependency>
 		<dependency>
 			<groupId>dev.galasa</groupId>
-			<artifactId>dev.galasa.eclipse</artifactId>
-			<version>0.22.0</version>
-		</dependency>
-		<dependency>
-			<groupId>dev.galasa</groupId>
 			<artifactId>dev.galasa.zos3270.common</artifactId>
 			<version>0.15.0</version>
 		</dependency>
