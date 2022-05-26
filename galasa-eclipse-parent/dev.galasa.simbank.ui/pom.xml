@@ -6,11 +6,11 @@
 	<parent>
 		<groupId>dev.galasa</groupId>
 		<artifactId>galasa-eclipse-parent</artifactId>
-		<version>0.23.0</version>
+		<version>0.24.0</version>
 	</parent>
 
 	<artifactId>dev.galasa.simbank.ui</artifactId>
-	<version>0.23.0</version>
+	<version>0.24.0</version>
 	<!-- If updating, reflect in dev.galasa.simbank.feature pom.xml and feature.xml -->
 	<packaging>eclipse-plugin</packaging>
 	<name>Galasa SimBank UI</name>
@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>dev.galasa</groupId>
 			<artifactId>dev.galasa.eclipse</artifactId>
-			<version>0.23.0</version>
+			<version>0.24.0</version>
 		</dependency>
 	</dependencies>
 
