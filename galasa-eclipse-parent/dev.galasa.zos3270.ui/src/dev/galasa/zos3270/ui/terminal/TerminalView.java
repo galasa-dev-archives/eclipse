@@ -1,7 +1,5 @@
 /*
- * Licensed Materials - Property of IBM
- * 
- * (c) Copyright IBM Corp. 2019.
+ * Copyright contributors to the Galasa project
  */
 package dev.galasa.zos3270.ui.terminal;
 
@@ -236,7 +234,7 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
         event.gc.setFont(fontText);
         FontMetrics fontMetrics = event.gc.getFontMetrics();
 
-        int charWidth = fontMetrics.getAverageCharWidth();
+        int charWidth = (int)(fontMetrics.getAverageCharacterWidth() * 1.3);
         int charHeight = fontMetrics.getHeight();
 
         TerminalImage terminalImage = image.getTerminalImage();
@@ -250,8 +248,10 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
 
             if (field.isFieldIntenseDisplay()) {
                 event.gc.setForeground(colourIntense);
+                event.gc.setBackground(colourBackground);
             } else {
                 event.gc.setForeground(colourNormal);
+                event.gc.setBackground(colourBackground);
             }
 
             for (FieldContents content : field.getContents()) {
@@ -259,7 +259,7 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
                     if (c != null) {
                         int x = charWidth * col;
                         int y = charHeight * row;
-                        event.gc.drawText(Character.toString(c), x, y, true);
+                        event.gc.drawText(Character.toString(c), x, y, false);
                     }
 
                     col++;
