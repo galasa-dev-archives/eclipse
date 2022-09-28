@@ -1,7 +1,5 @@
 /*
- * Licensed Materials - Property of IBM
- * 
- * (c) Copyright IBM Corp. 2019.
+ * Copyright contributors to the Galasa project
  */
 package dev.galasa.zos3270.ui.preferences;
 
@@ -22,6 +20,16 @@ public class Zos3270Preferences extends FieldEditorPreferencePage implements IWo
     private ColorFieldEditor normalColour;
     private ColorFieldEditor intenseColour;
 
+    private ColorFieldEditor defaultColour;
+    private ColorFieldEditor blueColour;
+    private ColorFieldEditor redColour;
+    private ColorFieldEditor pinkColour;
+    private ColorFieldEditor greenColour;
+    private ColorFieldEditor turquoiseColour;
+    private ColorFieldEditor yellowColour;
+    private ColorFieldEditor neutralColour;
+
+    
     public Zos3270Preferences() {
         super(GRID);
 
@@ -45,11 +53,29 @@ public class Zos3270Preferences extends FieldEditorPreferencePage implements IWo
         normalColour = new ColorFieldEditor(PreferenceConstants.P_NORMAL_COLOUR, "Normal Text Colour", getFieldEditorParent());
         intenseColour = new ColorFieldEditor(PreferenceConstants.P_INTENSE_COLOUR, "Intense Text Colour", getFieldEditorParent());
 
+        defaultColour = new ColorFieldEditor(PreferenceConstants.P_DEFAULT_COLOUR, "Default Colour", getFieldEditorParent());
+        blueColour = new ColorFieldEditor(PreferenceConstants.P_BLUE_COLOUR, "Blue Colour", getFieldEditorParent());
+        redColour = new ColorFieldEditor(PreferenceConstants.P_RED_COLOUR, "Red Colour", getFieldEditorParent());
+        pinkColour = new ColorFieldEditor(PreferenceConstants.P_PINK_COLOUR, "Pink Colour", getFieldEditorParent());
+        greenColour = new ColorFieldEditor(PreferenceConstants.P_GREEN_COLOUR, "Green Colour", getFieldEditorParent());
+        turquoiseColour = new ColorFieldEditor(PreferenceConstants.P_TURQUOISE_COLOUR, "Turquoise Colour", getFieldEditorParent());
+        yellowColour = new ColorFieldEditor(PreferenceConstants.P_YELLOW_COLOUR, "Yellow Colour", getFieldEditorParent());
+        neutralColour = new ColorFieldEditor(PreferenceConstants.P_NEUTRAL_COLOUR, "Neutral Colour", getFieldEditorParent());
+
+        
         addField(liveTerminals);
         addField(logConsole);
         addField(backgroundColour);
         addField(normalColour);
         addField(intenseColour);
+        addField(defaultColour);
+        addField(blueColour);
+        addField(redColour);
+        addField(pinkColour);
+        addField(greenColour);
+        addField(turquoiseColour);
+        addField(yellowColour);
+        addField(neutralColour);
     }
 
 }

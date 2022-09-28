@@ -35,6 +35,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontMetrics;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -71,6 +72,16 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
     private Color               colourNormal;
     private Color               colourIntense;
 
+    private Color               colourDefault;
+    private Color               colourBlue;
+    private Color               colourRed;
+    private Color               colourPink;
+    private Color               colourGreen;
+    private Color               colourTurquoise;
+    private Color               colourYellow;
+    private Color               colourNeutral;
+
+
     private Font                fontText;
 
     private boolean             loading              = true;
@@ -90,6 +101,9 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
 
     private String              viewId;
 
+    private boolean             blinkingActive       = false;
+    private boolean             blinkingVisible      = true;
+
     @Override
     public void createPartControl(Composite parent) {
         this.cachePath = Zos3270Activator.getDefault().getLiveTerminalsPath().resolve(UUID.randomUUID().toString());
@@ -101,17 +115,22 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
 
         this.shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
+
+
         this.canvas = new Canvas(parent, SWT.NULL);
 
         loadColourPreferences();
         loadFontPreferences();
 
         canvas.addPaintListener(this);
+        canvas.setLayoutData(new GridData(SWT.FILL,SWT.FILL,true,true));
 
         Zos3270Activator.getDefault().getPreferenceStore().addPropertyChangeListener(this);
 
         createActions();
         createToolbar();
+
+        this.canvas.getDisplay().timerExec(800, new Blinker());
     }
 
     private void createActions() {
@@ -177,6 +196,9 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
         if (this.currentImageSequence > this.images.size()) {
             this.currentImageSequence = this.images.size() - 1;
         }
+
+        blinkingActive  = false;
+        blinkingVisible = true;
 
         updateUI();
         new CheckCacheJob().schedule();
@@ -246,20 +268,109 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
             int col = field.getColumn();
             int row = field.getRow();
 
-            if (field.isFieldIntenseDisplay()) {
-                event.gc.setForeground(colourIntense);
-                event.gc.setBackground(colourBackground);
+            Character foregroundColour = field.getForegroundColour();
+            Character backgroundColour = field.getBackgroundColour();
+            Character highlight        = field.getHighlight();
+
+            boolean reverse   = (highlight != null && highlight == 'r');
+            boolean underline = (highlight != null && highlight == 'u');
+            boolean blink     = (highlight != null && highlight == 'b');
+
+            if (blink) {
+                blinkingActive = true;
+            }
+
+            Color activeForegroundColour = colourNormal;
+            Color activeBackgroundColour = colourBackground;
+            if (backgroundColour != null) {
+                if (backgroundColour == 'd') {
+                    activeBackgroundColour = colourDefault;
+                } else if (backgroundColour == 'b') {
+                    activeBackgroundColour = colourBlue;
+                } else if (backgroundColour == 'r') {
+                    activeBackgroundColour = colourRed;
+                } else if (backgroundColour == 'p') {
+                    activeBackgroundColour = colourPink;
+                } else if (backgroundColour == 'g') {
+                    activeBackgroundColour = colourGreen;
+                } else if (backgroundColour == 't') {
+                    activeBackgroundColour = colourTurquoise;
+                } else if (backgroundColour == 'y') {
+                    activeBackgroundColour = colourYellow;
+                } else if (backgroundColour == 'n') {
+                    activeBackgroundColour = colourNeutral;
+                } else {
+                    activeBackgroundColour = colourNormal;
+                }
+            }
+
+            if (foregroundColour == null) {
+                if (field.isFieldIntenseDisplay()) {
+                    activeForegroundColour = colourIntense;
+                } else {
+                    activeForegroundColour = colourNormal;
+                }
             } else {
-                event.gc.setForeground(colourNormal);
-                event.gc.setBackground(colourBackground);
+                if (foregroundColour == 'd') {
+                    activeForegroundColour = colourDefault;
+                } else if (foregroundColour == 'b') {
+                    activeForegroundColour = colourBlue;
+                } else if (foregroundColour == 'r') {
+                    activeForegroundColour = colourRed;
+                } else if (foregroundColour == 'p') {
+                    activeForegroundColour = colourPink;
+                } else if (foregroundColour == 'g') {
+                    activeForegroundColour = colourGreen;
+                } else if (foregroundColour == 't') {
+                    activeForegroundColour = colourTurquoise;
+                } else if (foregroundColour == 'y') {
+                    activeForegroundColour = colourYellow;
+                } else if (foregroundColour == 'n') {
+                    activeForegroundColour = colourNeutral;
+                } else {
+                    activeForegroundColour = colourNormal;
+                }
+            }
+
+
+            if (reverse) {
+                Color temp = activeForegroundColour;
+                activeForegroundColour = activeBackgroundColour;
+                activeBackgroundColour = temp;
+            }
+
+            if (!field.isUnformatted()) {
+                col++;
+                if (col >= cols) {
+                    col = 0;
+                    row++;
+                    if (row >= rows) {
+                        row = 0;
+                    }
+                }
             }
 
             for (FieldContents content : field.getContents()) {
                 for (Character c : content.getChars()) {
+                    int x = charWidth * col;
+                    int y = charHeight * row;
+
+                    event.gc.setBackground(activeBackgroundColour);
+                    event.gc.setForeground(activeForegroundColour);
+
+                    if (reverse || blink) {
+                        event.gc.fillRectangle(x, y, charWidth, charHeight);
+                    }
+
                     if (c != null) {
-                        int x = charWidth * col;
-                        int y = charHeight * row;
-                        event.gc.drawText(Character.toString(c), x, y, false);
+                        if (!blink || (blink && blinkingVisible)) {
+                            event.gc.drawText(Character.toString(c), x, y, false);
+                        }
+                    }
+
+                    if (underline) {
+                        int y2 = (charHeight * (row + 1)) - 1;
+                        event.gc.drawLine(x, y2, x + charWidth, y2);
                     }
 
                     col++;
@@ -311,6 +422,27 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
         }
 
         event.gc.drawText(sb.toString(), 0, oiaYText, true);
+    }
+
+    private class Blinker implements Runnable {
+        @Override
+        public void run() {
+            if (TerminalView.this.disposed) {
+                return;
+            }
+
+            if (blinkingActive) {
+                TerminalView.this.canvas.redraw();
+            } else {
+            }
+
+            blinkingVisible = !blinkingVisible;
+            if (blinkingVisible) {
+                canvas.getDisplay().timerExec(1000, this);
+            } else {
+                canvas.getDisplay().timerExec(200, this);
+            }
+        }
     }
 
     private void displayMessage(PaintEvent event, String message) {
@@ -389,9 +521,27 @@ public class TerminalView extends ViewPart implements PaintListener, IPropertyCh
         RGB rgbNormal = convertRGB(preferenceStore.getString(PreferenceConstants.P_NORMAL_COLOUR));
         RGB rgbIntense = convertRGB(preferenceStore.getString(PreferenceConstants.P_INTENSE_COLOUR));
 
+        RGB rgbDefault   = convertRGB(preferenceStore.getString(PreferenceConstants.P_INTENSE_COLOUR));
+        RGB rgbBlue      = convertRGB(preferenceStore.getString(PreferenceConstants.P_BLUE_COLOUR));
+        RGB rgbRed       = convertRGB(preferenceStore.getString(PreferenceConstants.P_RED_COLOUR));
+        RGB rgbPink      = convertRGB(preferenceStore.getString(PreferenceConstants.P_PINK_COLOUR));
+        RGB rgbGreen     = convertRGB(preferenceStore.getString(PreferenceConstants.P_GREEN_COLOUR));
+        RGB rgbTurquoise = convertRGB(preferenceStore.getString(PreferenceConstants.P_TURQUOISE_COLOUR));
+        RGB rgbYellow    = convertRGB(preferenceStore.getString(PreferenceConstants.P_YELLOW_COLOUR));
+        RGB rgbNeutral   = convertRGB(preferenceStore.getString(PreferenceConstants.P_NEUTRAL_COLOUR));
+
         colourBackground = new Color(display, rgbBackground);
         colourNormal = new Color(display, rgbNormal);
         colourIntense = new Color(display, rgbIntense);
+
+        colourDefault = new Color(display, rgbDefault);
+        colourBlue = new Color(display, rgbBlue);
+        colourRed = new Color(display, rgbRed);
+        colourPink = new Color(display, rgbPink);
+        colourGreen = new Color(display, rgbGreen);
+        colourTurquoise = new Color(display, rgbTurquoise);
+        colourYellow = new Color(display, rgbYellow);
+        colourNeutral = new Color(display, rgbNeutral);
 
         canvas.setBackground(colourBackground);
     }
