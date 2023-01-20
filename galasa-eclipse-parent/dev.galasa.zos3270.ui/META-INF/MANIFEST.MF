@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Galasa zOS 3270 UI
 Bundle-SymbolicName: dev.galasa.zos3270.ui;singleton:=true
-Bundle-Version: 0.25.0.qualifier
+Bundle-Version: 0.26.0.qualifier
 Bundle-Activator: dev.galasa.zos3270.ui.Zos3270Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -18,6 +18,6 @@ Import-Package: com.google.gson,
  dev.galasa.eclipse.liveupdates,
  dev.galasa.eclipse.ui.run,
  dev.galasa.eclipse.ui.run.storedartifacts,
- dev.galasa.zos3270.common.screens;version="0.25.0",
+ dev.galasa.zos3270.common.screens;version="0.26.0",
  javax.servlet;version="3.1.0",
  javax.servlet.http;version="3.1.0"
