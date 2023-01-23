@@ -49,7 +49,7 @@
 								<item>
 									<groupId>dev.galasa</groupId>
 									<artifactId>galasa-simbanktests-parent</artifactId>
-									<version>0.26.0</version>
+									<version>0.25.0</version>
 									<classifier>examples</classifier>
 									<type>zip</type>
 								</item>
