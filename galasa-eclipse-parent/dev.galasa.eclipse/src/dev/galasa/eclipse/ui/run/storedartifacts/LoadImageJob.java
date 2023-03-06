@@ -1,8 +1,12 @@
+/*
+ * Copyright contributors to the Galasa project
+ */
 package dev.galasa.eclipse.ui.run.storedartifacts;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -27,7 +31,7 @@ public class LoadImageJob extends Job {
 		try {
 			String fileName = this.imagePath.getFileName().toString();
 			Path cachePath = Activator.getCachePath().resolve(fileName);
-			Files.copy(this.imagePath, cachePath);
+			Files.copy(this.imagePath, cachePath, StandardCopyOption.REPLACE_EXISTING);
 			
 			view.setCachedImagePath(cachePath);
 			view.loadImagetoUI();
