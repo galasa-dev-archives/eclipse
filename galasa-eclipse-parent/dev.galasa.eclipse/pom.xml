@@ -86,7 +86,7 @@
 								<item>
 									<groupId>dev.galasa</groupId>
 									<artifactId>galasa-boot</artifactId>
-									<version>0.26.0</version>
+									<version>0.27.0</version>
 								</item>
 							</artifactItems>
 							<outputDirectory>lib</outputDirectory>
