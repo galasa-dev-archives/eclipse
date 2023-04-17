@@ -147,7 +147,7 @@ public class ExampleMavenSimbankOperation implements IRunnableWithProgress {
             managerProject.setDescription(managerDescription, monitor);
 
             @SuppressWarnings("restriction")
-            UpdateMavenProjectJob job = new UpdateMavenProjectJob(new IProject[] { testProject, managerProject });// TODO
+            UpdateMavenProjectJob job = new UpdateMavenProjectJob(Arrays.asList(new IProject[] { testProject, managerProject }));// TODO
                                                                                                                   // find
                                                                                                                   // official
                                                                                                                   // way
