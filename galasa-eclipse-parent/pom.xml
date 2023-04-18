@@ -73,8 +73,8 @@
 	<properties>
 	    <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
-		<tycho-version>1.4.0</tycho-version>
-		<tycho-extras.version>1.4.0</tycho-extras.version>
+		<tycho-version>3.0.4</tycho-version>
+		<tycho-extras.version>3.0.4</tycho-extras.version>
 		<tycho.disableP2Mirrors>true</tycho.disableP2Mirrors>
 		<!-- Exclude tests until Jenkins display issue resolved -->
 		<skipTests>true</skipTests>
