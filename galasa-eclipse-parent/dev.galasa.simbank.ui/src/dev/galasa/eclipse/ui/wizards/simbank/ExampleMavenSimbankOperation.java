@@ -1,7 +1,5 @@
 /*
- * Licensed Materials - Property of IBM
- * 
- * (c) Copyright IBM Corp. 2019,2021.
+ * Copyright contributors to the Galasa project 
  */
 package dev.galasa.eclipse.ui.wizards.simbank;
 
@@ -147,13 +145,7 @@ public class ExampleMavenSimbankOperation implements IRunnableWithProgress {
             managerProject.setDescription(managerDescription, monitor);
 
             @SuppressWarnings("restriction")
-            UpdateMavenProjectJob job = new UpdateMavenProjectJob(new IProject[] { testProject, managerProject });// TODO
-                                                                                                                  // find
-                                                                                                                  // official
-                                                                                                                  // way
-                                                                                                                  // to
-                                                                                                                  // do
-                                                                                                                  // this
+            UpdateMavenProjectJob job = new UpdateMavenProjectJob(Arrays.asList(new IProject[] { testProject, managerProject }));
             job.schedule();
 
         } catch (Throwable t) {

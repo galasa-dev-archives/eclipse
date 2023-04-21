@@ -1,7 +1,5 @@
 /*
- * Licensed Materials - Property of IBM
- * 
- * (c) Copyright IBM Corp. 2019,2021.
+ * Copyright contributors to the Galasa project 
  */
 package dev.galasa.eclipse.launcher;
 
@@ -351,13 +349,13 @@ public class Launcher extends JavaLaunchDelegate {
                     }
                 } else if (workspaceProject.hasNature(MAVEN_NATURE)) {
                     IMavenProjectFacade mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(workspaceProject);
-                    String version = mavenProjectFacade.getArtifactKey().getVersion();
+                    String version = mavenProjectFacade.getArtifactKey().version();
 
                     IPath outputPath = mavenProjectFacade.getOutputLocation().removeLastSegments(1);
                     IResource actualOutputPath = workspaceRoot.findMember(outputPath);
                     java.nio.file.Path realOutputPath = Paths.get(actualOutputPath.getLocationURI());
                     
-                    String artifactId = mavenProjectFacade.getArtifactKey().getArtifactId();
+                    String artifactId = mavenProjectFacade.getArtifactKey().artifactId();
                     if (artifactId == null) {
                         rejectedBundles.put(workspaceProject.getName(), "Artifact ID is missing from project");
                         continue;
@@ -458,13 +456,13 @@ public class Launcher extends JavaLaunchDelegate {
 			if (actualProject.hasNature(MAVEN_NATURE)) {
 				consoleDefault.append("This is a maven project: " + project + "\n");
 				IMavenProjectFacade mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(actualProject);
-				String version = mavenProjectFacade.getArtifactKey().getVersion();
+				String version = mavenProjectFacade.getArtifactKey().version();
 				
 				IPath outputPath = mavenProjectFacade.getOutputLocation().removeLastSegments(1);
 				IResource actualOutputPath = workspaceRoot.findMember(outputPath);
 				java.nio.file.Path realOutputPath = Paths.get(actualOutputPath.getRawLocationURI());
 				
-				String artifactId = mavenProjectFacade.getArtifactKey().getArtifactId();
+				String artifactId = mavenProjectFacade.getArtifactKey().artifactId();
 				if (artifactId == null) {
 				    consoleDefault.append("Artifact ID is missing from project: " + project + "\n");
 				    return null;
