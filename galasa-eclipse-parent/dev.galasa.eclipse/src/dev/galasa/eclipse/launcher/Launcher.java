@@ -137,13 +137,6 @@ public class Launcher extends JavaLaunchDelegate {
             consoleDefault.append("Maven remote repository is at " + remoteMavenUri + "\n");
         }
 
-        // *** Set the Credentials store to be the local file, not the remote cps if
-        // defined TODO - make this an preference
-        java.nio.file.Path galasaDir = Paths.get(System.getProperty("user.home"), ".galasa")
-                .resolve("credentials.properties");
-        URI credentialsUri = galasaDir.toUri();
-        consoleDefault.append("Setting Credentials store to be " + credentialsUri.toString());
-
         // *** Build the Workspace OBR
         File workspaceOBR = buildWorkspaceOBR();
         if (workspaceOBR == null) {
@@ -207,16 +200,11 @@ public class Launcher extends JavaLaunchDelegate {
             // *** Add the framework overrides
             generatedOverrides.put("framework.run.requestor", requestorId);
 
-            // *** At the moment, force the local runs to use local RAS. TODO provide a
-            // preference and launch config option
-            java.nio.file.Path localRas = Paths.get(System.getProperty("user.home"), ".galasa", "ras");
-            generatedOverrides.put("framework.resultarchive.store", localRas.toUri().toString());
-
             // Add the bootstrap url to the overrides for the benefit of the managers
             generatedOverrides.put("framework.bootstrap.url", bootstrapUri);
 
-            // *** Set the credentials store
-            generatedOverrides.put("framework.credentials.store", credentialsUri.toString());
+            // Add the ability to create png files as well as the json
+            generatedOverrides.put("zos3270.terminal.output","json,png");
 
             generatedOverrides.store(Files.newOutputStream(overridesFile), "Galasa overrides file");
         } catch (Exception e) {
