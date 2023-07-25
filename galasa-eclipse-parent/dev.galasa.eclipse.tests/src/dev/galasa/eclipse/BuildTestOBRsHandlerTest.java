@@ -1,3 +1,8 @@
+/*
+ * Copyright contributors to the Galasa project
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ */
 package dev.galasa.eclipse;
 
 import static org.junit.Assert.assertEquals;
@@ -93,7 +98,8 @@ public class BuildTestOBRsHandlerTest {
 	}
 	
 
-	/**
+	
+/**
 	 * Run the {@link BuildTestOBRsHandler}
 	 * @throws ExecutionException
 	 * @throws NotDefinedException
