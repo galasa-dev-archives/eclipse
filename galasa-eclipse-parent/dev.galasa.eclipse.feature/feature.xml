@@ -3,7 +3,7 @@
       id="dev.galasa.eclipse.feature"
       label="Galasa Core"
       version="0.31.0.qualifier"
-      provider-name="IBM">
+      provider-name="Galasa">
 
    <copyright>
       Copyright contributors to the Galasa project
