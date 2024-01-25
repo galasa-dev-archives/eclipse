@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>dev.galasa</groupId>
 			<artifactId>dev.galasa.ras.couchdb</artifactId>
-			<version>0.21.0</version>
+			<version>0.28.0</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
